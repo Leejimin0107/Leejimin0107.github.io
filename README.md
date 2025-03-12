@@ -4,6 +4,6 @@
 Homework2
 -------------
 1. [**homework2-1**](https://leejimin0107.github.io/homework2-1.html)
-2. [**homework2-2**]
+2. [**homework2-2**](https://leejimin0107.github.io/homework2-2.html)
 3. [**homework2-3**]
 4. [**homework2-4**]
