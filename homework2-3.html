@@ -3,38 +3,34 @@
 <head>
     <title>Two Column Layout</title>
     <style>
-        <!-- .column 클래스를 사용하여 두 개의 칼럼을 나란히 배치 -->
+        .container {
+            display: flex; /* 두 개의 칼럼을 가로로 배치 */
+        }
         .column {
-            width: 50%; <!-- 각 칼럼의 너비를 화면의 50%로 설정 -->
-            float: left; <!-- 칼럼을 왼쪽으로 정렬하여 가로로 배치 -->
-            padding: 10px; <!-- 내부 여백 추가 -->
-            box-sizing: border-box; <!-- padding과 border가 width에 포함되도록 설정 -->
+            width: 50%; /* 각 칼럼의 너비를 50%로 설정 */
+            padding: 10px; /* 내부 여백 추가 */
+            box-sizing: border-box; /* padding과 border가 width에 포함되도록 설정 */
         }
-        
-        <!-- 제목(h1) 스타일 지정 -->
         h1 {
-            font-size: 20px; <!-- 글자 크기 설정 -->
-            font-weight: bold; <!-- 글자를 굵게 표시 -->
+            font-size: 20px;
+            font-weight: bold;
         }
-        
-        <!-- 본문(p) 스타일 지정 -->
         p {
-            font-size: 14px; <!-- 글자 크기 설정 -->
-            line-height: 1.6; <!-- 줄 간격 설정 -->
+            font-size: 14px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-    <!-- 첫 번째 칼럼 -->
-    <div class="column">
-        <h1>Stanford researchers find a quicker, cheaper way to sort isotopes</h1>
-        <p><b>BY EMMANUEL ROMERO</b> L.A. Cicero Richard Zare Professor Richard Zare in his lab. Whether it's the summer grass that tickles your feet or the red Bordeaux smacking on your palate, nearly every part of the world around you carries special chemical markers. These markers, called isotopes, can tell scientists where the molecules that compose a substance are from, where they traveled and what happened to them along the way. But doing these analyses has been complex and costly. Now, Stanford chemists have developed a new method to make isotopic analysis easier and less expensive.</p>
-    </div>
-    
-    <!-- 두 번째 칼럼 -->
-    <div class="column">
-        <h1>Chance to dance: Enthusiasts fly to Stanford for dance weekend</h1>
-        <p><b>BY CYNTHIA HAVEN</b> L.A. Cicero Lindy Hop instruction Stanford is an epicenter for the vintage dance movement—but life in the Stanford dance world is not all foxtrots and tangos. The June 26-28 Stanford’s Dance Weekend in Roble Gym offers something for modern dance enthusiasts, too: the hustle, the West Coast swing, 1970s disco hustle, Bollywood and blues fusion.</p>
+    <div class="container">
+        <div class="column">
+            <h1>Stanford researchers find a quicker, cheaper way to sort isotopes</h1>
+            <p><b>BY EMMANUEL ROMERO</b> L.A. Cicero Richard Zare Professor Richard Zare in his lab. Whether it's the summer grass that tickles your feet or the red Bordeaux smacking on your palate, nearly every part of the world around you carries special chemical markers. These markers, called isotopes, can tell scientists where the molecules that compose a substance are from, where they traveled and what happened to them along the way. But doing these analyses has been complex and costly. Now, Stanford chemists have developed a new method to make isotopic analysis easier and less expensive.</p>
+        </div>
+        <div class="column">
+            <h1>Chance to dance: Enthusiasts fly to Stanford for dance weekend</h1>
+            <p><b>BY CYNTHIA HAVEN</b> L.A. Cicero Lindy Hop instruction Stanford is an epicenter for the vintage dance movement—but life in the Stanford dance world is not all foxtrots and tangos. The June 26-28 Stanford’s Dance Weekend in Roble Gym offers something for modern dance enthusiasts, too: the hustle, the West Coast swing, 1970s disco hustle, Bollywood and blues fusion.</p>
+        </div>
     </div>
 </body>
 </html>
