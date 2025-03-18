@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanford Performing Arts</title>
+    
+    <!-- CSS를 HTML 내부에서 직접 작성 -->
+    <style>
+        <!-- 전체 페이지 스타일 -->
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        <!-- 헤더 스타일 -->
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: red;
+            font-size: 36px;
+        }
+
+        .edition {
+            color: red;
+            font-weight: bold;
+        }
+
+        <!-- 섹션 스타일 -->
+        main {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .concert-info {
+            width: 65%;
+        }
+
+        .concert-info h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .content {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .content img {
+            width: 300px;
+            height: auto;
+            margin-right: 15px;
+        }
+
+        .calendar {
+            width: 30%;
+        }
+
+        .calendar h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .calendar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .calendar li {
+            border-bottom: 1px solid black;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 페이지 제목 -->
+    <header>
+        <h1>Stanford Performing Arts</h1>
+        <p class="edition">Autumn 2012 Edition</p>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main>
+        <section class="concert-info">
+            <h2>Bing Concert Hall</h2>
+            <div class="content">
+                <img src="bing_concert_hall.jpg" alt="Bing Concert Hall"> 
+                <p>
+                    The Bing Concert Hall at Stanford will play a vital role on campus and in the local community. 
+                    The hall's exceptional acoustics and state-of-the-art technical capabilities will showcase the world's finest performers.
+                </p>
+                <p>
+                    The hall is scheduled to open early in 2013. The concert hall will have 844 seats in an intimate vineyard-style configuration, 
+                    with terraced sections wrapping all the way around the stage.
+                </p>
+            </div>
+        </section>
+
+        <!-- 일정 정보 -->
+        <section class="calendar">
+            <h2>Calendar</h2>
+            <ul>
+                <li>Harmony for Humanity: Daniel Pearl World Music Concert</li>
+                <li>Sundays with the St. Lawrence String Quartet</li>
+                <li>Merce Cunningham Dance Company</li>
+                <li>Juilliard String Quartet</li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+</html>
