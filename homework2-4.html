@@ -1,44 +1,55 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stanford Performing Arts</title>
     
-    <!-- CSS를 HTML 내부에서 직접 작성 -->
     <style>
-        <!-- 전체 페이지 스타일 -->
+        <!-- 브라우저 기본 마진/패딩 제거 (디자인 통일) -->
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        <!-- 전체 페이지 기본 스타일 -->
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             padding: 0;
         }
 
-        <!-- 헤더 스타일 -->
+        <!-- 헤더 스타일 (제목과 에디션 정보) -->
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* 좌우 정렬 */
             align-items: center;
         }
 
+        <!-- 제목 스타일 -->
         h1 {
             color: red;
             font-size: 36px;
         }
 
+        <!-- 에디션 정보 스타일 -->
         .edition {
             color: red;
             font-weight: bold;
         }
 
-        <!-- 섹션 스타일 -->
+        <!-- 메인 콘텐츠 가로 정렬 -->
         main {
-            display: flex;
-            justify-content: space-between;
+            display: flex; /* 가로 정렬 */
+            justify-content: space-between; /* 양쪽 정렬 */
+            align-items: flex-start; /* 위쪽 정렬 */
             margin-top: 20px;
         }
 
+        <!-- 왼쪽 섹션 (Bing Concert Hall 정보) -->
         .concert-info {
-            width: 65%;
+            width: 65%; /* 왼쪽 영역 너비 설정 */
         }
 
         .concert-info h2 {
@@ -46,19 +57,21 @@
             font-weight: bold;
         }
 
+        <!-- 이미지와 텍스트를 가로로 배치 -->
         .content {
             display: flex;
             align-items: flex-start;
         }
 
         .content img {
-            width: 300px;
+            width: 300px; /* 이미지 크기 */
             height: auto;
-            margin-right: 15px;
+            margin-right: 15px; /* 이미지와 텍스트 사이 간격 */
         }
 
+        <!-- 오른쪽 섹션 (Calendar 일정) -->
         .calendar {
-            width: 30%;
+            width: 30%; /* 오른쪽 영역 너비 설정 */
         }
 
         .calendar h2 {
@@ -66,20 +79,21 @@
             font-weight: bold;
         }
 
+        <!-- 캘린더 스타일 -->
         .calendar ul {
-            list-style: none;
+            list-style: none; /* 리스트 앞 점 제거 */
             padding: 0;
         }
 
         .calendar li {
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid black; /* 일정 구분선 */
             padding: 5px 0;
         }
     </style>
 </head>
 <body>
 
-    <!-- 페이지 제목 -->
+    <!-- 헤더 영역: 제목 + 에디션 정보 -->
     <header>
         <h1>Stanford Performing Arts</h1>
         <p class="edition">Autumn 2012 Edition</p>
@@ -87,31 +101,39 @@
 
     <!-- 메인 콘텐츠 영역 -->
     <main>
+
+        <!-- 왼쪽: Bing Concert Hall 정보 -->
         <section class="concert-info">
             <h2>Bing Concert Hall</h2>
             <div class="content">
+                <!-- 콘서트홀 이미지 -->
                 <img src="bing_concert_hall.jpg" alt="Bing Concert Hall"> 
+                
+                <!-- 콘서트홀 설명 -->
                 <p>
                     The Bing Concert Hall at Stanford will play a vital role on campus and in the local community. 
                     The hall's exceptional acoustics and state-of-the-art technical capabilities will showcase the world's finest performers.
                 </p>
-                <p>
-                    The hall is scheduled to open early in 2013. The concert hall will have 844 seats in an intimate vineyard-style configuration, 
-                    with terraced sections wrapping all the way around the stage.
-                </p>
             </div>
+
+            <p>
+                The hall is scheduled to open early in 2013. The concert hall will have 844 seats in an intimate vineyard-style configuration, 
+                with terraced sections wrapping all the way around the stage.
+            </p>
         </section>
 
-        <!-- 일정 정보 -->
+        <!-- 오른쪽: 공연 일정 (Calendar) -->
         <section class="calendar">
             <h2>Calendar</h2>
             <ul>
+                <!-- 공연 목록 -->
                 <li>Harmony for Humanity: Daniel Pearl World Music Concert</li>
                 <li>Sundays with the St. Lawrence String Quartet</li>
                 <li>Merce Cunningham Dance Company</li>
                 <li>Juilliard String Quartet</li>
             </ul>
         </section>
+
     </main>
 
 </body>
