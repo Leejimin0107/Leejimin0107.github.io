@@ -1,14 +1,19 @@
-create database amusement;
-use amusement;
-create table amusement (
-	name	char(32)	 not null primary key, character set utf8
-	enter_child	int(3),
-	enter_adult	int(3),
-	big3_child 	int(3),
-	big3_adult	int(3),
-	free_child	int(3),
-	free_adult	int(3),
-	year_child	int(3),
-	year_adult	int(3),
+CREATE DATABASE amusement DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+USE amusement;
+
+DROP TABLE IF EXISTS amusement;
+
+CREATE TABLE amusement (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name CHAR(32) CHARACTER SET utf8mb4 NOT NULL,
+    enter_child INT,
+    enter_adult INT,
+    big3_child INT,
+    big3_adult INT,
+    free_child INT,
+    free_adult INT,
+    year_child INT,
+    year_adult INT,
+    regdate DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-describe amusement;
