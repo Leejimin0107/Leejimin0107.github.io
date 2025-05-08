@@ -16,5 +16,4 @@
 5. [**homework3-5**](https://leejimin0107.github.io/homework3-5.png)
 # Homework4
 -------------
-1. [**homework4-php**](https://leejimin0107.github.io/homework4.php)
-2. [**homework4-sql**](https://leejimin0107.github.io/homework4.sql)
+1. [**homework4**](https://docs.google.com/document/d/1ovVQu4Mia4jS9swoWWDa7NuFPBNAtHN370xQ8JPeZEs/edit?usp=sharing)
