@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 메뉴 계산기</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #e0f2f7; /* 밝은 파란색 배경 */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 90vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 35px 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
+            width: 100%;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #00796b; /* 진한 청록색 */
+            margin-bottom: 35px;
+            font-size: 2.2em;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 12px 0;
+            border-bottom: 1px dashed #cfd8dc; /* 연한 회색 점선 */
+        }
+        .menu-item:last-child {
+            border-bottom: none; /* 마지막 항목은 선 없음 */
+        }
+        .item-info {
+            flex-grow: 1;
+            font-size: 1.1em;
+            color: #455a64; /* 진한 회색 텍스트 */
+        }
+        .item-info .price {
+            font-weight: bold;
+            color: #00796b; /* 헤딩 색상과 일치 */
+        }
+        .menu-item input[type="number"] {
+            width: 70px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #b0bec5; /* 차분한 테두리 */
+            text-align: center;
+            font-size: 1em;
+            -moz-appearance: textfield; /* Firefox에서 화살표 숨기기 */
+        }
+        .menu-item input[type="number"]::-webkit-outer-spin-button,
+        .menu-item input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none; /* Chrome/Safari에서 화살표 숨기기 */
+            margin: 0;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 30px;
+            background-color: #00796b; /* 진한 청록색 버튼 */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(0, 121, 107, 0.2);
+        }
+        button:hover {
+            background-color: #004d40; /* 호버 시 더 진한 청록색 */
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .total {
+            text-align: right;
+            margin-top: 35px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #d32f2f; /* 강조를 위한 빨간색 */
+            padding-top: 15px;
+            border-top: 2px solid #eceff1; /* 총액 위 연한 테두리 */
+        }
+
+        /* 영수증 스타일 */
+        .receipt-area {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px dashed #b0bec5;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #555;
+            display: none; /* 초기에는 숨김 */
+        }
+        .receipt-area h2 {
+            text-align: center;
+            color: #00796b;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .receipt-item .name-qty {
+            flex-grow: 1;
+        }
+        .receipt-item .subtotal {
+            font-weight: bold;
+            text-align: right;
+            width: 80px; /* 소계 금액 정렬을 위해 너비 고정 */
+        }
+        .receipt-separator {
+            border-top: 1px dashed #cfd8dc;
+            margin: 15px 0;
+        }
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #d32f2f;
+        }
+        .receipt-date {
+            text-align: center;
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>카페에 오신 것을 환영합니다!</h1>
+
+        <div class="menu-item">
+            <div class="item-info">아메리카노 <span class="price">(3,500원)</span></div>
+            <input type="number" id="americano" value="0" min="0">
+        </div>
+        <div class="menu-item">
+            <div class="item-info">카페라떼 <span class="price">(4,000원)</span></div>
+            <input type="number" id="latte" value="0" min="0">
+        </div>
+        <div class="menu-item">
+            <div class="item-info">카푸치노 <span class="price">(4,250원)</span></div>
+            <input type="number" id="cappuccino" value="0" min="0">
+        </div>
+        <div class="menu-item">
+            <div class="item-info">카페모카 <span class="price">(4,500원)</span></div>
+            <input type="number" id="mocha" value="0" min="0">
+        </div>
+        <div class="menu-item">
+            <div class="item-info">에스프레소 <span class="price">(3,000원)</span></div>
+            <input type="number" id="espresso" value="0" min="0">
+        </div>
+        <div class="menu-item">
+            <div class="item-info">크루아상 <span class="price">(3,200원)</span></div>
+            <input type="number" id="croissant" value="0" min="0">
+        </div>
+        <div class="menu-item">
+            <div class="item-info">머핀 <span class="price">(2,750원)</span></div>
+            <input type="number" id="muffin" value="0" min="0">
+        </div>
+
+        <button onclick="calculateOrder()">총액 계산하기</button>
+
+        <div class="total" id="totalAmount">
+            총액: 0원
+        </div>
+
+        <div class="receipt-area" id="receiptArea">
+            <h2><pre>--- 영 수 증 ---</pre></h2>
+            <div id="receiptItems">
+                </div>
+            <div class="receipt-separator"></div>
+            <div class="receipt-total">
+                <span>총 결제 금액:</span>
+                <span id="receiptFinalTotal">0원</span>
+            </div>
+            <div class="receipt-date" id="receiptDate"></div>
+        </div>
+    </div>
+
+    <script src="cafemenu_cal.js"></script>
+</body>
+</html>
