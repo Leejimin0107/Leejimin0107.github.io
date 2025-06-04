@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+</style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+    <script>
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    var lasttime;
+
+    var myRectangle = {
+        x: 0,
+        y: 30,
+        width: 50,
+        height: 50,
+        borderWidth: 5
+    };
+
+    var runAnimation = {
+        value: false
+    };
+
+    var speed = 150;  // 이동 속도 (픽셀/초)
+    var direction = "right";  // 초기 이동 방향
+
+    window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || 
+               window.webkitRequestAnimationFrame || 
+               window.mozRequestAnimationFrame || 
+               window.oRequestAnimationFrame || 
+               window.msRequestAnimationFrame ||
+               function(callback) {
+                   window.setTimeout(callback, 1000 / 60);
+               };
+    })();
+
+    function drawRect(myRectangle, context) {
+        context.beginPath();
+        context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
+        context.fillStyle = '#8ED6FF';
+        context.fill();
+        context.lineWidth = myRectangle.borderWidth;
+        context.strokeStyle = 'black';
+        context.stroke();
+    }
+
+    function animate(myRectangle, runAnimation, canvas, context) {
+        if(runAnimation.value) {
+            var time = (new Date()).getTime();
+            var timeDiff = time - lasttime;
+            var moveDist = speed * timeDiff / 1000;
+
+            // 방향에 따라 이동
+            if (direction === "right") {
+                myRectangle.x += moveDist;
+                if (myRectangle.x + myRectangle.width >= canvas.width) {
+                    myRectangle.x = canvas.width - myRectangle.width;
+                    direction = "down"; // 방향 변경
+                }
+            } else if (direction === "down") {
+                myRectangle.y += moveDist;
+                if (myRectangle.y + myRectangle.height >= canvas.height) {
+                    myRectangle.y = canvas.height - myRectangle.height;
+                    direction = "left"; // 방향 변경
+                }
+            } else if (direction === "left") {
+                myRectangle.x -= moveDist;
+                if (myRectangle.x <= 0) {
+                    myRectangle.x = 0;
+                    direction = "up"; // 방향 변경
+                }
+            } else if (direction === "up") {
+                myRectangle.y -= moveDist;
+                if (myRectangle.y <= 0) {
+                    myRectangle.y = 0;
+                    direction = "right"; // 방향 변경
+                }
+            }
+
+            lasttime = time;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawRect(myRectangle, context);
+
+            requestAnimFrame(function() {
+                animate(myRectangle, runAnimation, canvas, context);
+            });
+        }
+    }
+
+    document.getElementById('myCanvas').addEventListener('click', function() {
+        runAnimation.value = !runAnimation.value;
+        if(runAnimation.value) {
+            lasttime = (new Date()).getTime();
+            animate(myRectangle, runAnimation, canvas, context);
+        }
+    });
+
+    drawRect(myRectangle, context);
+    </script>
+</body>
+</html>

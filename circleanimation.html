@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+</style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+    <script>
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    var lasttime;
+
+    var angle = 0;  // 회전 각도
+    var rotationSpeed = 2 * Math.PI / 3000;  // 회전 속도 (초당 한 바퀴)
+
+    var runAnimation = { value: false };
+
+    window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || 
+               window.webkitRequestAnimationFrame || 
+               window.mozRequestAnimationFrame || 
+               window.oRequestAnimationFrame || 
+               window.msRequestAnimationFrame ||
+               function(callback) {
+                   window.setTimeout(callback, 1000 / 60);
+               };
+    })();
+
+    function drawRotatingCircle(context, angle) {
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        var radius = 150;
+
+        var circleX = centerX + radius * Math.cos(angle);
+        var circleY = centerY + radius * Math.sin(angle);
+
+        // 원 그리기
+        context.beginPath();
+        context.arc(circleX, circleY, 20, 0, 2 * Math.PI);
+        context.fillStyle = '#8ED6FF';
+        context.fill();
+        context.lineWidth = 2;
+        context.strokeStyle = 'black';
+        context.stroke();
+
+        // 파란색 대각선 선 (4개 추가)
+        var corners = [
+            { x: 0, y: 0 }, // 왼쪽 상단
+            { x: canvas.width, y: canvas.height }, // 오른쪽 하단
+            { x: canvas.width, y: 0 }, // 오른쪽 상단
+            { x: 0, y: canvas.height } // 왼쪽 하단
+        ];
+
+        context.strokeStyle = 'blue';
+        context.lineWidth = 2;
+
+        corners.forEach(corner => {
+            context.beginPath();
+            context.moveTo(corner.x, corner.y);
+            context.lineTo(circleX, circleY);
+            context.stroke();
+        });
+
+        // 빨간색 중앙 선
+        context.beginPath();
+        context.moveTo(centerX, centerY);
+        context.lineTo(circleX, circleY);
+        context.strokeStyle = 'red';
+        context.lineWidth = 3;
+        context.stroke();
+    }
+
+    function animate(runAnimation, context) {
+        if(runAnimation.value) {
+            var time = (new Date()).getTime();
+            var timeDiff = time - lasttime;
+            angle += rotationSpeed * timeDiff;
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawRotatingCircle(context, angle);
+
+            lasttime = time;
+            requestAnimFrame(function() {
+                animate(runAnimation, context);
+            });
+        }
+    }
+
+    document.getElementById('myCanvas').addEventListener('click', function() {
+        runAnimation.value = !runAnimation.value;
+        if(runAnimation.value) {
+            lasttime = (new Date()).getTime();
+            animate(runAnimation, context);
+        }
+    });
+
+    drawRotatingCircle(context, angle);
+    </script>
+</body>
+</html>

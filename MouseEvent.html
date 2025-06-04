@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Tracking Mouse and Drawing Rectangles on Canvas</title>
+    <script type="text/javascript">
+        var canvas, context, canX, canY, startX, startY, isDragging = false;
+
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            context = canvas.getContext("2d");
+
+            canvas.addEventListener("mousedown", mouseDown, false);
+            canvas.addEventListener("mousemove", mouseMove, false);
+            canvas.addEventListener("mouseup", mouseUp, false);
+        }
+
+        function mouseDown(e) {
+            isDragging = true;
+            startX = e.pageX - canvas.offsetLeft;
+            startY = e.pageY - canvas.offsetTop;
+        }
+
+        function mouseMove(e) {
+            if (!isDragging) return;
+            canX = e.pageX - canvas.offsetLeft;
+            canY = e.pageY - canvas.offsetTop;
+            drawRectangle();
+        }
+
+        function mouseUp(e) {
+            isDragging = false;
+            canX = e.pageX - canvas.offsetLeft;
+            canY = e.pageY - canvas.offsetTop;
+            showFinalPosition();
+        }
+
+        function drawRectangle() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.strokeStyle = "blue";
+            context.lineWidth = 2;
+            context.strokeRect(startX, startY, canX - startX, canY - startY);
+        }
+
+        function showFinalPosition() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.strokeStyle = "red";
+            context.lineWidth = 2;
+            context.strokeRect(startX, startY, canX - startX, canY - startY);
+
+            // 좌표 출력
+            context.font = "20pt Helvetica";
+            context.fillStyle = "black";
+            context.textAlign = "center";
+            context.fillText(`(${startX}, ${startY}) - (${canX}, ${canY}) up`, canvas.width / 2, canvas.height / 2);
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas id="myCanvas" height="500" width="500" style="border:1px solid #000000;">
+    </canvas>
+</body>
+</html>
